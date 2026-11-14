@@ -22,7 +22,7 @@ ASSET_EXT = TEXT_EXT + (
     ".mp4", ".webm", ".mov", ".woff", ".woff2", ".ttf", ".otf", ".pdf",
 )
 
-ATTR_RE = re.compile(r"""(?:href|src|poster|data-src|content)\s*=\s*["']([^"'<>]+)["']""", re.I)
+ATTR_RE = re.compile(r"""(?:href|src|poster|data-src)\s*=\s*["']([^"'<>]+)["']""", re.I)
 SRCSET_RE = re.compile(r"""srcset\s*=\s*["']([^"']+)["']""", re.I)
 CSS_URL_RE = re.compile(r"""url\(\s*["']?([^"')]+)["']?\s*\)""", re.I)
 # caminhos entre aspas dentro de JavaScript, por exemplo listas de projetos
@@ -37,7 +37,10 @@ def normalise(url, parent):
     parts = urllib.parse.urlparse(full)
     if parts.scheme not in ("http", "https") or parts.netloc != HOST:
         return None
-    return urllib.parse.urlunparse((parts.scheme, parts.netloc, parts.path or "/", "", parts.query, ""))
+    if any(ch.isspace() for ch in parts.path):
+        return None
+    path = urllib.parse.quote(urllib.parse.unquote(parts.path or "/"), safe="/")
+    return urllib.parse.urlunparse((parts.scheme, parts.netloc, path, "", parts.query, ""))
 
 
 def local_path(url):
@@ -80,7 +83,7 @@ def main():
             with urllib.request.urlopen(req, timeout=120) as resp:
                 data = resp.read()
                 ctype = resp.headers.get("Content-Type", "")
-        except (urllib.error.URLError, OSError) as exc:
+        except Exception as exc:  # uma falha nao interrompe as restantes
             failed.append((url, str(exc)))
             print("FALHOU", url, exc)
             continue

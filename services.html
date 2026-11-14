@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services — João Vaz Monteiro · Photographer & Filmmaker</title>
+  <meta name="description" content="Photography and filmmaking services by João Vaz Monteiro — brand films, documentary, fashion, product and editorial photography.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Barlow:wght@300;400&family=Barlow+Condensed:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --color-bg-page:      #1A1410;
+      --color-earth-dark:   #2C2318;
+      --color-earth-mid:    #4A3828;
+      --color-sand-mid:     #C4A882;
+      --color-gold:         #B8965A;
+      --color-gold-light:   #D4B07A;
+      --color-gold-dark:    #8A6A38;
+      --color-text-primary:   #F0EAE0;
+      --color-text-secondary: #9A8E82;
+      --color-text-muted:     #6A5E54;
+      --color-border:        rgba(184,150,90,0.2);
+      --color-border-subtle: rgba(240,234,224,0.08);
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.5);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --pad: clamp(24px,5vw,72px);
+      --max: 1280px;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--color-bg-page); color: var(--color-text-primary); font-family: 'Barlow', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+
+    /* ── Nav ── */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 26px var(--pad); transition: background 0.5s, border-color 0.5s; border-bottom: 0.5px solid transparent; }
+    nav.scrolled { background: rgba(26,20,16,0.95); backdrop-filter: blur(12px); border-color: var(--color-border-subtle); }
+    .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--color-text-primary); text-decoration: none; }
+    .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+    .nav-links a { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: 0.5em; text-transform: uppercase; color: var(--color-text-secondary); text-decoration: none; position: relative; padding-bottom: 4px; transition: color 300ms var(--ease-out); }
+    .nav-links a::after { content: ""; position: absolute; bottom: -2px; left: 0; width: 100%; height: 1px; background: var(--color-gold); transform: scaleX(0); transform-origin: left; transition: transform 300ms var(--ease-out); }
+    .nav-links a:hover, .nav-links a.active { color: var(--color-text-primary); }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+    .nav-lang { border-left: 0.5px solid var(--color-border-subtle); padding-left: 24px; display: flex; align-items: center; gap: 0; }
+    .lang-btn { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--color-text-muted); background: none; border: 1px solid transparent; cursor: pointer; padding: 2px 8px; transition: all 200ms var(--ease-out); }
+    .lang-btn:hover { color: var(--color-text-primary); }
+    .lang-btn.active { color: var(--color-gold); border-color: var(--color-border); }
+    .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; z-index: 201; position: relative; }
+    .nav-hamburger span { display: block; width: 22px; height: 1px; background: var(--color-text-primary); transition: transform 0.3s, opacity 0.3s; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* ── Hero ── */
+    .page-hero { min-height: 40vh; display: flex; align-items: flex-end; padding: 120px var(--pad) clamp(32px,4vh,52px); border-bottom: 1px solid var(--color-border-subtle); }
+    .page-hero-inner { max-width: var(--max); width: 100%; }
+    .page-eyebrow { display: block; font-family: 'Barlow Condensed', sans-serif; font-size: 10px; letter-spacing: 0.5em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 20px; }
+    .page-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(72px,12vw,130px); font-weight: 400; line-height: 0.9; letter-spacing: 0.05em; text-transform: uppercase; }
+    .page-sub { margin-top: 28px; font-family: 'Cormorant Garamond', serif; font-size: clamp(18px,1.6vw,22px); font-weight: 300; font-style: italic; color: var(--color-sand-mid); line-height: 1.4; }
+
+    /* ── Section base ── */
+    .section { padding: clamp(72px,10vw,130px) var(--pad); border-bottom: 1px solid var(--color-border-subtle); }
+    .section-inner { max-width: var(--max); margin: 0 auto; }
+    .section-label { font-family: 'Barlow Condensed', sans-serif; display: block; font-size: 10px; letter-spacing: 0.5em; text-transform: uppercase; color: var(--color-text-secondary); margin-bottom: 52px; }
+
+    /* ── Services list ── */
+    .services-group { margin-bottom: clamp(48px,6vw,80px); }
+    .services-group:last-child { margin-bottom: 0; }
+    .services-group-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(28px,3vw,42px); letter-spacing: 0.1em; color: var(--color-text-primary); margin-bottom: 4px; }
+    .services-group-sub { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 32px; }
+
+    .service-item { display: grid; grid-template-columns: 56px 1fr; gap: 16px; align-items: start; padding: 28px 0; border-top: 1px solid var(--color-border-subtle); transition: border-color 300ms var(--ease-out); }
+    .service-item:last-child { border-bottom: 1px solid var(--color-border-subtle); }
+    .service-item:hover { border-color: var(--color-border); }
+    .service-num { font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: 0.2em; color: var(--color-gold); padding-top: 3px; }
+    .service-name { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(18px,1.8vw,24px); font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-primary); margin-bottom: 10px; }
+    .service-desc { font-size: 14px; line-height: 1.8; color: var(--color-text-secondary); max-width: 560px; }
+    .service-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .service-tag { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--color-text-muted); border: 1px solid var(--color-border-subtle); padding: 4px 10px; }
+
+    /* ── Process ── */
+    .process-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; }
+    .process-step { padding: 36px 32px 36px 0; border-left: 1px solid var(--color-border-subtle); padding-left: 28px; position: relative; }
+    .process-step::before { content: ''; position: absolute; top: 44px; right: -1px; width: 32px; height: 1px; background: var(--color-border); }
+    .process-step:last-child::before { display: none; }
+    .process-num { font-family: 'Bebas Neue', sans-serif; font-size: 48px; line-height: 1; color: var(--color-gold); opacity: 0.25; margin-bottom: 16px; display: block; }
+    .process-title { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--color-text-primary); margin-bottom: 12px; }
+    .process-desc { font-size: 13px; line-height: 1.8; color: var(--color-text-secondary); }
+
+    /* ── Clients ── */
+    .logos-grid { display: grid; grid-template-columns: repeat(5,1fr); }
+    .logo-cell { padding: 28px 16px; border: 0.5px solid var(--color-border-subtle); margin: -0.25px; display: flex; align-items: center; justify-content: center; min-height: 90px; transition: background 0.25s; }
+    .logo-cell:hover { background: rgba(184,150,90,0.04); }
+    .logo-cell img { display: block; max-width: 110px; max-height: 52px; width: auto; height: auto; mix-blend-mode: screen; opacity: 0.85; transition: opacity 0.3s; }
+    .logo-cell:hover img { opacity: 1; }
+
+    /* ── CTA ── */
+    .cta { text-align: center; padding: clamp(80px,12vw,140px) var(--pad); }
+    .cta-heading { font-family: 'Cormorant Garamond', serif; font-size: clamp(38px,5vw,68px); font-weight: 300; line-height: 1.05; font-style: italic; color: var(--color-text-primary); margin-bottom: 40px; }
+    .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: 0.5em; text-transform: uppercase; text-decoration: none; padding: 15px 42px; transition: all 300ms var(--ease-out); }
+    .btn-solid { background: var(--color-gold); color: var(--color-bg-page); }
+    .btn-solid:hover { background: var(--color-gold-light); }
+    .btn-outline { border: 1px solid var(--color-gold); color: var(--color-text-primary); }
+    .btn-outline:hover { background: rgba(184,150,90,0.1); }
+
+    /* ── Footer ── */
+    footer { padding: 26px var(--pad); border-top: 1px solid var(--color-border-subtle); background: var(--color-bg-page); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--color-text-primary); text-decoration: none; }
+    .footer-links { display: flex; gap: 24px; list-style: none; }
+    .footer-links a { font-family: 'Barlow', sans-serif; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-muted); text-decoration: none; transition: color 300ms var(--ease-out); }
+    .footer-links a:hover { color: var(--color-text-secondary); }
+
+    /* ── Reveal ── */
+    .reveal { opacity: 0; transform: translateY(6px); transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out); }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .process-grid { grid-template-columns: repeat(2,1fr); }
+      .process-step::before { display: none; }
+      .logos-grid { grid-template-columns: repeat(3,1fr); }
+    }
+    @media (max-width: 680px) {
+      .nav-hamburger { display: flex; }
+      .nav-logo { display: block !important; }
+      .nav-links { position: fixed; inset: 0; background: rgba(26,20,16,0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); display: flex !important; flex-direction: column; align-items: center; justify-content: center; gap: 36px; z-index: 200; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+      .nav-links.open { opacity: 1; pointer-events: auto; }
+      .nav-links li { list-style: none; }
+      .nav-links a { font-size: 14px; }
+      .nav-lang { border-left: none; padding-left: 0; gap: 20px; }
+      .service-item { grid-template-columns: 40px 1fr; }
+      .service-arrow { display: none; }
+      .process-grid { grid-template-columns: 1fr; }
+      .logos-grid { grid-template-columns: repeat(2,1fr); }
+      .logo-cell img { max-width: 72px; max-height: 36px; }
+      .btn { display: block; width: 100%; text-align: center; padding: 17px 24px; }
+      .cta-btns { flex-direction: column; align-items: center; }
+    }
+    @media (max-width: 580px) { .nav-logo { display: none; } }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="about.html" class="nav-logo">João Vaz Monteiro</a>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="about.html" data-en="About" data-pt="Sobre">About</a></li>
+    <li><a href="work.html" data-en="Work" data-pt="Projeto">Work</a></li>
+    <li><a href="services.html" class="active" data-en="Services" data-pt="Serviços">Services</a></li>
+    <li><a href="mailto:hello@joaomonteiro.pt" data-en="Contact" data-pt="Contacto">Contact</a></li>
+    <li class="nav-lang">
+      <button onclick="setLang('en')" id="btn-en" class="lang-btn active">EN</button>
+      <button onclick="setLang('pt')" id="btn-pt" class="lang-btn">PT</button>
+    </li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <span class="page-eyebrow reveal" data-en="What I offer" data-pt="O que ofereço">What I offer</span>
+    <h1 class="page-title reveal" data-en="Services" data-pt="Serviços">Services</h1>
+    <p class="page-sub reveal" data-en="Photography &amp; film crafted with intention — for brands, artists and institutions that value the image." data-pt="Fotografia &amp; cinema com intenção — para marcas, artistas e instituições que valorizam a imagem.">Photography &amp; film crafted with intention — for brands, artists and institutions that value the image.</p>
+  </div>
+</section>
+
+<!-- Services -->
+<section class="section">
+  <div class="section-inner">
+    <span class="section-label reveal" data-en="Disciplines" data-pt="Disciplinas">Disciplines</span>
+
+    <!-- Photography -->
+    <div class="services-group reveal">
+      <h2 class="services-group-title" data-en="Photography" data-pt="Fotografia">Photography</h2>
+      <p class="services-group-sub" data-en="Still image — product, fashion, portrait, documentary" data-pt="Imagem fixa — produto, moda, retrato, documentário">Still image — product, fashion, portrait, documentary</p>
+
+      <div class="service-item">
+        <span class="service-num">01</span>
+        <div class="service-body">
+          <h3 class="service-name" data-en="Brand &amp; Product Photography" data-pt="Fotografia de Marca &amp; Produto">Brand &amp; Product Photography</h3>
+          <p class="service-desc" data-en="Visuals that translate the essence of a brand into a single frame. Product sessions, e-commerce campaigns, brand identity imagery — built to work across print and digital." data-pt="Visuais que traduzem a essência de uma marca num único fotograma. Sessões de produto, campanhas de e-commerce, imagens de identidade de marca — construídas para funcionar em print e digital.">Visuals that translate the essence of a brand into a single frame. Product sessions, e-commerce campaigns, brand identity imagery — built to work across print and digital.</p>
+          <div class="service-tags">
+            <span class="service-tag" data-en="Product sessions" data-pt="Sessões de produto">Product sessions</span>
+            <span class="service-tag" data-en="E-commerce" data-pt="E-commerce">E-commerce</span>
+            <span class="service-tag" data-en="Brand campaigns" data-pt="Campanhas de marca">Brand campaigns</span>
+            <span class="service-tag" data-en="Lookbooks" data-pt="Lookbooks">Lookbooks</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-item">
+        <span class="service-num">02</span>
+        <div class="service-body">
+          <h3 class="service-name" data-en="Fashion &amp; Editorial" data-pt="Moda &amp; Editorial">Fashion &amp; Editorial</h3>
+          <p class="service-desc" data-en="Collaboration with designers, stylists and art directors to produce editorial imagery for magazines, campaigns and fashion collections." data-pt="Colaboração com designers, stylists e diretores de arte para produzir imagens editoriais para revistas, campanhas e coleções de moda.">Collaboration with designers, stylists and art directors to produce editorial imagery for magazines, campaigns and fashion collections.</p>
+          <div class="service-tags">
+            <span class="service-tag" data-en="Fashion campaigns" data-pt="Campanhas de moda">Fashion campaigns</span>
+            <span class="service-tag" data-en="Magazine editorial" data-pt="Editorial de revista">Magazine editorial</span>
+            <span class="service-tag" data-en="Collections" data-pt="Coleções">Collections</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-item">
+        <span class="service-num">03</span>
+        <div class="service-body">
+          <h3 class="service-name" data-en="Portrait &amp; Studio" data-pt="Retrato &amp; Estúdio">Portrait &amp; Studio</h3>
+          <p class="service-desc" data-en="Portraits for artists, institutions and public figures. Studio or location-based — controlled light or available light. The image serves the person, not the other way around." data-pt="Retratos para artistas, instituições e figuras públicas. Estúdio ou locação — luz controlada ou luz ambiente. A imagem serve a pessoa, não o contrário.">Portraits for artists, institutions and public figures. Studio or location-based — controlled light or available light. The image serves the person, not the other way around.</p>
+          <div class="service-tags">
+            <span class="service-tag" data-en="Artist portraits" data-pt="Retratos de artistas">Artist portraits</span>
+            <span class="service-tag" data-en="Institutional" data-pt="Institucional">Institutional</span>
+            <span class="service-tag" data-en="Studio sessions" data-pt="Sessões de estúdio">Studio sessions</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-item">
+        <span class="service-num">04</span>
+        <div class="service-body">
+          <h3 class="service-name" data-en="Documentary &amp; Reportage" data-pt="Documentário &amp; Reportagem">Documentary &amp; Reportage</h3>
+          <p class="service-desc" data-en="On-the-ground photography for cultural events, festivals, territory and community projects. Images that carry the weight of what actually happened." data-pt="Fotografia no terreno para eventos culturais, festivais, projetos de território e comunidade. Imagens que carregam o peso do que realmente aconteceu.">On-the-ground photography for cultural events, festivals, territory and community projects. Images that carry the weight of what actually happened.</p>
+          <div class="service-tags">
+            <span class="service-tag" data-en="Events" data-pt="Eventos">Events</span>
+            <span class="service-tag" data-en="Cultural projects" data-pt="Projetos culturais">Cultural projects</span>
+            <span class="service-tag" data-en="Territory" data-pt="Território">Territory</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Film -->
+    <div class="services-group reveal">
+      <h2 class="services-group-title" data-en="Film &amp; Video" data-pt="Cinema &amp; Vídeo">Film &amp; Video</h2>
+      <p class="services-group-sub" data-en="Moving image — brand, documentary, direction of photography" data-pt="Imagem em movimento — marca, documentário, direção de fotografia">Moving image — brand, documentary, direction of photography</p>
+
+      <div class="service-item">
+        <span class="service-num">05</span>
+        <div class="service-body">
+          <h3 class="service-name" data-en="Brand Films &amp; Commercials" data-pt="Brand Films &amp; Comerciais">Brand Films &amp; Commercials</h3>
+          <p class="service-desc" data-en="Short-form films that build brand worlds. From concept to final cut — direction, cinematography, editing and colour grading included." data-pt="Filmes de curta duração que constroem universos de marca. Do conceito ao corte final — direção, cinematografia, edição e gradação de cor incluídos.">Short-form films that build brand worlds. From concept to final cut — direction, cinematography, editing and colour grading included.</p>
+          <div class="service-tags">
+            <span class="service-tag" data-en="Brand films" data-pt="Brand films">Brand films</span>
+            <span class="service-tag" data-en="Commercials" data-pt="Comerciais">Commercials</span>
+            <span class="service-tag" data-en="Social content" data-pt="Conteúdo social">Social content</span>
+            <span class="service-tag" data-en="Corporate video" data-pt="Vídeo corporativo">Corporate video</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-item">
+        <span class="service-num">06</span>
+        <div class="service-body">
+          <h3 class="service-name" data-en="Documentary Film" data-pt="Cinema Documental">Documentary Film</h3>
+          <p class="service-desc" data-en="Long-form and short documentary work for cultural institutions, NGOs, festivals and independent projects. Stories that deserve to be told properly." data-pt="Trabalho documental de longa e curta duração para instituições culturais, ONGs, festivais e projetos independentes. Histórias que merecem ser bem contadas.">Long-form and short documentary work for cultural institutions, NGOs, festivals and independent projects. Stories that deserve to be told properly.</p>
+          <div class="service-tags">
+            <span class="service-tag" data-en="Short documentary" data-pt="Curta documental">Short documentary</span>
+            <span class="service-tag" data-en="Cultural institutions" data-pt="Instituições culturais">Cultural institutions</span>
+            <span class="service-tag" data-en="Festivals" data-pt="Festivais">Festivals</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-item">
+        <span class="service-num">07</span>
+        <div class="service-body">
+          <h3 class="service-name" data-en="Direction of Photography" data-pt="Direção de Fotografia">Direction of Photography</h3>
+          <p class="service-desc" data-en="Available as DoP for external productions — fiction, documentary, commercial or institutional. Bringing a considered visual language to other directors' visions." data-pt="Disponível como DoP para produções externas — ficção, documentário, comercial ou institucional. Trazendo uma linguagem visual cuidada à visão de outros realizadores.">Available as DoP for external productions — fiction, documentary, commercial or institutional. Bringing a considered visual language to other directors' visions.</p>
+          <div class="service-tags">
+            <span class="service-tag" data-en="Fiction" data-pt="Ficção">Fiction</span>
+            <span class="service-tag" data-en="Documentary DoP" data-pt="DoP documental">Documentary DoP</span>
+            <span class="service-tag" data-en="Commercial DoP" data-pt="DoP comercial">Commercial DoP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section class="section">
+  <div class="section-inner">
+    <span class="section-label reveal" data-en="How it works" data-pt="Como funciona">How it works</span>
+    <div class="process-grid reveal">
+      <div class="process-step">
+        <span class="process-num">01</span>
+        <h4 class="process-title" data-en="Brief" data-pt="Brief">Brief</h4>
+        <p class="process-desc" data-en="Understanding the project, the brand, the audience and the intended outcome. This is where the visual direction is defined." data-pt="Compreender o projeto, a marca, o público e o resultado pretendido. É aqui que se define a direção visual.">Understanding the project, the brand, the audience and the intended outcome. This is where the visual direction is defined.</p>
+      </div>
+      <div class="process-step">
+        <span class="process-num">02</span>
+        <h4 class="process-title" data-en="Pre-Production" data-pt="Pré-Produção">Pre-Production</h4>
+        <p class="process-desc" data-en="Location scouting, casting, moodboards, scheduling and technical preparation. Every detail is resolved before the first frame is shot." data-pt="Pesquisa de locais, casting, moodboards, calendarização e preparação técnica. Cada detalhe é resolvido antes do primeiro fotograma.">Location scouting, casting, moodboards, scheduling and technical preparation. Every detail is resolved before the first frame is shot.</p>
+      </div>
+      <div class="process-step">
+        <span class="process-num">03</span>
+        <h4 class="process-title" data-en="Production" data-pt="Produção">Production</h4>
+        <p class="process-desc" data-en="The shoot or film day. Focused, efficient and collaborative — with enough flexibility to capture what wasn't planned but needed to exist." data-pt="O dia de rodagem ou sessão. Focado, eficiente e colaborativo — com flexibilidade suficiente para capturar o que não foi planeado mas precisava de existir.">The shoot or film day. Focused, efficient and collaborative — with enough flexibility to capture what wasn't planned but needed to exist.</p>
+      </div>
+      <div class="process-step">
+        <span class="process-num">04</span>
+        <h4 class="process-title" data-en="Post &amp; Delivery" data-pt="Pós &amp; Entrega">Post &amp; Delivery</h4>
+        <p class="process-desc" data-en="Editing, retouching and colour grading. Delivered in agreed formats with full usage rights. The project is only finished when the client is satisfied." data-pt="Edição, retoque e gradação de cor. Entregue nos formatos acordados com direitos de utilização completos. O projeto só está concluído quando o cliente está satisfeito.">Editing, retouching and colour grading. Delivered in agreed formats with full usage rights. The project is only finished when the client is satisfied.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Clients -->
+<section class="section">
+  <div class="section-inner">
+    <span class="section-label reveal" data-en="Trusted by" data-pt="Trabalhei com">Trusted by</span>
+    <div class="logos-grid reveal">
+      <div class="logo-cell"><img src="Bosch.png" alt="Bosch"></div>
+      <div class="logo-cell"><img src="330px-EDP_logo.svg.png" alt="EDP"></div>
+      <div class="logo-cell"><img src="330px-NEFF_Logo_DE.svg.png" alt="NEFF"></div>
+      <div class="logo-cell"><img src="330px-Siemens-logo.svg.png" alt="Siemens"></div>
+      <div class="logo-cell"><img src="250px-Mercedes-Logo.svg.png" alt="Mercedes-Benz"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2 class="cta-heading reveal" data-en="Let's build something<br><em>worth remembering.</em>" data-pt="Vamos criar algo<br><em>que vale a pena recordar.</em>">Let's build something<br><em>worth remembering.</em></h2>
+  <div class="cta-btns reveal">
+    <a href="mailto:hello@joaomonteiro.pt" class="btn btn-solid" data-en="Start a Project" data-pt="Iniciar um Projeto">Start a Project</a>
+    <a href="work.html" class="btn btn-outline" data-en="View Work" data-pt="Ver Projetos">View Work</a>
+  </div>
+</section>
+
+<footer>
+  <a href="about.html" class="footer-logo">João Vaz Monteiro</a>
+  <ul class="footer-links">
+    <li><a href="work.html" data-en="Work" data-pt="Projeto">Work</a></li>
+    <li><a href="services.html" data-en="Services" data-pt="Serviços">Services</a></li>
+    <li><a href="about.html" data-en="About" data-pt="Sobre">About</a></li>
+    <li><a href="mailto:hello@joaomonteiro.pt" data-en="Contact" data-pt="Contacto">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+  // Language switcher
+  function setLang(lang) {
+    document.querySelectorAll('[data-en]').forEach(function(el) {
+      el.innerHTML = el.dataset[lang] || el.dataset.en;
+    });
+    var btnEn = document.getElementById('btn-en');
+    var btnPt = document.getElementById('btn-pt');
+    if (btnEn) btnEn.classList.toggle('active', lang === 'en');
+    if (btnPt) btnPt.classList.toggle('active', lang === 'pt');
+    document.documentElement.lang = lang;
+    localStorage.setItem('lang', lang);
+  }
+  var savedLang = localStorage.getItem('lang');
+  if (savedLang && savedLang !== 'en') setLang(savedLang);
+
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 50); }, {passive: true});
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, {threshold: 0, rootMargin: '0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('nav-links');
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+      if (isOpen) window.scrollTo({ top: 0, behavior: 'instant' });
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', false);
+        document.body.style.overflow = '';
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

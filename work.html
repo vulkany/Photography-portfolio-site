@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work — João Vaz Monteiro · Photographer & Filmmaker</title>
+  <meta name="description" content="Selected projects by João Vaz Monteiro — destination films, brand campaigns, documentary and personal work.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Barlow:wght@300;400&family=Barlow+Condensed:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Earth palette */
+      --color-bg-page:      #1A1410;
+      --color-earth-dark:   #2C2318;
+      --color-earth-mid:    #4A3828;
+      --color-earth-warm:   #8B7355;
+      --color-sand-mid:     #C4A882;
+      --color-dust:         #EAD9C2;
+
+      /* Gold accent */
+      --color-gold:         #B8965A;
+      --color-gold-light:   #D4B07A;
+      --color-gold-dark:    #8A6A38;
+
+      /* Text */
+      --color-text-primary:   #F0EAE0;
+      --color-text-secondary: #9A8E82;
+      --color-text-muted:     #6A5E54;
+
+      /* Borders */
+      --color-border:        rgba(184,150,90,0.2);
+      --color-border-subtle: rgba(240,234,224,0.08);
+
+      /* Shadows */
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.5);
+
+      /* Easing */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+      /* Layout */
+      --pad: clamp(24px, 5vw, 72px);
+      --max: 1280px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--color-bg-page);
+      color: var(--color-text-primary);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Navigation ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 26px var(--pad);
+      transition: background 0.5s, border-color 0.5s;
+      border-bottom: 0.5px solid transparent;
+    }
+    nav.scrolled {
+      background: rgba(26,20,16,0.95);
+      backdrop-filter: blur(12px);
+      border-color: var(--color-border-subtle);
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--color-text-primary);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+    .nav-links a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 4px;
+      transition: color 300ms var(--ease-out);
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 100%; height: 1px;
+      background: var(--color-gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 300ms var(--ease-out);
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--color-text-primary); }
+    .nav-links a:hover::after,
+    .nav-links a.active::after { transform: scaleX(1); }
+    .nav-lang {
+      border-left: 0.5px solid var(--color-border-subtle);
+      padding-left: 24px;
+      display: flex; align-items: center; gap: 0;
+    }
+    .lang-btn {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--color-text-muted);
+      background: none; border: 1px solid transparent;
+      cursor: pointer; padding: 2px 8px;
+      transition: all 200ms var(--ease-out);
+    }
+    .lang-btn:hover { color: var(--color-text-primary); }
+    .lang-btn.active {
+      color: var(--color-gold);
+      border-color: var(--color-border);
+    }
+
+    /* ── Hamburger ── */
+    .nav-hamburger {
+      display: none; flex-direction: column; justify-content: center; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 8px;
+      z-index: 201; position: relative;
+    }
+    .nav-hamburger span {
+      display: block; width: 22px; height: 1px;
+      background: var(--color-text-primary);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* ── Work Hero ── */
+    .work-hero {
+      min-height: 45vh;
+      display: flex; align-items: flex-end;
+      padding: 120px var(--pad) clamp(32px, 4vh, 52px);
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+    .work-hero-inner { max-width: var(--max); width: 100%; }
+    .work-hero-eyebrow {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; letter-spacing: 0.5em; text-transform: uppercase;
+      color: var(--color-text-muted); margin-bottom: 20px;
+    }
+    .work-hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(72px, 12vw, 130px);
+      font-weight: 400;
+      line-height: 0.9;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--color-text-primary);
+    }
+    .work-hero-sub {
+      margin-top: 28px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--color-sand-mid);
+    }
+
+    /* ── Work Grid ── */
+    .work-grid-section { padding: clamp(24px, 3vw, 48px) var(--pad) clamp(48px, 8vw, 100px); }
+    .work-grid-inner { max-width: var(--max); margin: 0 auto; }
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4px;
+    }
+    .work-card { display: block; text-decoration: none; color: inherit; cursor: pointer; }
+    .work-card-img {
+      overflow: hidden; height: 460px;
+      background: var(--color-earth-dark);
+    }
+    .work-card-img img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.65s var(--ease-out);
+    }
+    .work-card:hover .work-card-img img { transform: scale(1.04); }
+    .work-card-meta {
+      padding: 20px 0 36px;
+      border-bottom: 1px solid var(--color-border);
+      transition: border-color 300ms var(--ease-out);
+    }
+    .work-card:hover .work-card-meta { border-color: var(--color-gold); }
+    .work-card:hover { transform: translateY(-2px); }
+    .work-cat {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; letter-spacing: 0.5em; text-transform: uppercase;
+      color: var(--color-gold); margin-bottom: 8px;
+    }
+    .work-client {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--color-text-secondary); margin-bottom: 10px;
+    }
+    .work-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(20px, 2.2vw, 28px);
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-text-primary);
+      line-height: 1.2;
+      transition: color 300ms var(--ease-out);
+    }
+    .work-card:hover .work-title { color: var(--color-gold-light); }
+
+    /* ── CTA ── */
+    .cta { text-align: center; padding: clamp(80px,12vw,140px) var(--pad); }
+    .cta-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(38px,5vw,68px); font-weight: 300; line-height: 1.05;
+      font-style: italic;
+      color: var(--color-text-primary); margin-bottom: 40px;
+    }
+    .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; letter-spacing: 0.5em; text-transform: uppercase;
+      text-decoration: none; padding: 15px 42px;
+      transition: all 300ms var(--ease-out);
+    }
+    .btn-solid { background: var(--color-gold); color: var(--color-bg-page); }
+    .btn-solid:hover { background: var(--color-gold-light); }
+    .btn-outline { border: 1px solid var(--color-gold); color: var(--color-text-primary); }
+    .btn-outline:hover { background: rgba(184,150,90,0.1); }
+
+    /* ── Footer ── */
+    footer {
+      padding: 26px var(--pad);
+      border-top: 1px solid var(--color-border-subtle);
+      background: var(--color-bg-page);
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
+    }
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--color-text-primary); text-decoration: none;
+    }
+    .footer-links { display: flex; gap: 24px; list-style: none; }
+    .footer-links a {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--color-text-muted); text-decoration: none;
+      transition: color 300ms var(--ease-out);
+    }
+    .footer-links a:hover { color: var(--color-text-secondary); }
+
+    /* ── Reveal ── */
+    .reveal { opacity: 0; transform: translateY(6px); transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out); }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .work-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 680px) {
+      .nav-hamburger { display: flex; }
+      .nav-logo { display: block !important; }
+      .nav-links {
+        position: fixed; inset: 0;
+        background: rgba(26,20,16,0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        display: flex !important; flex-direction: column; align-items: center; justify-content: center;
+        gap: 36px; z-index: 200; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+      }
+      .nav-links.open { opacity: 1; pointer-events: auto; }
+      .nav-links li { list-style: none; }
+      .nav-links a { font-size: 14px; }
+      .nav-lang { border-left: none; padding-left: 0; gap: 20px; }
+      .work-card-img { height: 260px; }
+      .btn { display: block; width: 100%; text-align: center; padding: 17px 24px; }
+      .cta-btns { flex-direction: column; align-items: center; }
+    }
+    @media (max-width: 580px) { .nav-logo { display: none; } }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="about.html" class="nav-logo">João Vaz Monteiro</a>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="about.html" data-en="About" data-pt="Sobre">About</a></li>
+    <li><a href="work.html" class="active" data-en="Work" data-pt="Projeto">Work</a></li>
+    <li><a href="services.html" data-en="Services" data-pt="Serviços">Services</a></li>
+    <li><a href="mailto:hello@joaomonteiro.pt" data-en="Contact" data-pt="Contacto">Contact</a></li>
+    <li class="nav-lang">
+      <button onclick="setLang('en')" id="btn-en" class="lang-btn active">EN</button>
+      <button onclick="setLang('pt')" id="btn-pt" class="lang-btn">PT</button>
+    </li>
+  </ul>
+</nav>
+
+<section class="work-hero">
+  <div class="work-hero-inner">
+    <span class="work-hero-eyebrow reveal" data-en="Selected Projects" data-pt="Projetos Selecionados">Selected Projects</span>
+    <h1 class="work-hero-title reveal" data-en="Work" data-pt="Projeto">Work</h1>
+    <p class="work-hero-sub reveal" data-en="Photography &amp;nbsp;·&amp;nbsp; Film &amp;nbsp;·&amp;nbsp; Brand" data-pt="Fotografia &amp;nbsp;·&amp;nbsp; Cinema &amp;nbsp;·&amp;nbsp; Marca">Photography &nbsp;·&nbsp; Film &nbsp;·&nbsp; Brand</p>
+  </div>
+</section>
+
+<section class="work-grid-section">
+  <div class="work-grid-inner">
+    <div class="work-grid">
+
+      <a class="work-card reveal" href="project-norre.html">
+        <div class="work-card-img">
+          <img src="https://joaomonteiro.pt/media/pages/archive/norre/a861e2db69-1773080275/norre_20.jpg" alt="Nørre">
+        </div>
+        <div class="work-card-meta">
+          <span class="work-cat" data-en="Bakery &amp; Brand" data-pt="Padaria &amp; Marca">Bakery &amp; Brand</span>
+          <span class="work-client">Nørre Bakery</span>
+          <h3 class="work-title">Nørre</h3>
+        </div>
+      </a>
+
+      <a class="work-card reveal" href="project-bruta-jewel.html">
+        <div class="work-card-img">
+          <img src="https://joaomonteiro.pt/media/pages/archive/bruta-jewel/f76ba85703-1773080298/bruta_jewelry_product-session_0762.jpg" alt="Bruta Jewel">
+        </div>
+        <div class="work-card-meta">
+          <span class="work-cat" data-en="Product Photography" data-pt="Fotografia de Produto">Product Photography</span>
+          <span class="work-client">Bruta Matéria</span>
+          <h3 class="work-title">Bruta Jewel</h3>
+        </div>
+      </a>
+
+      <a class="work-card reveal" href="project-fumeiro-montalegre.html">
+        <div class="work-card-img">
+          <img src="https://joaomonteiro.pt/media/pages/archive/feira-do-fumeiro-montalegre/35bf247710-1776942257/still-2026-01-16-181047_1.1.2.png" alt="Feira do Fumeiro Montalegre">
+        </div>
+        <div class="work-card-meta">
+          <span class="work-cat" data-en="Documentary Film" data-pt="Documentário">Documentary Film</span>
+          <span class="work-client">Montalegre</span>
+          <h3 class="work-title">Feira do Fumeiro</h3>
+        </div>
+      </a>
+
+      <a class="work-card reveal" href="project-climbing.html">
+        <div class="work-card-img">
+          <img src="https://joaomonteiro.pt/media/pages/archive/climbing/31c94e603d-1775579649/dsc7761_climbing_01.jpg" alt="Climbing">
+        </div>
+        <div class="work-card-meta">
+          <span class="work-cat" data-en="Photography" data-pt="Fotografia">Photography</span>
+          <span class="work-client" data-en="Personal" data-pt="Pessoal">Personal</span>
+          <h3 class="work-title">Climbing</h3>
+        </div>
+      </a>
+
+      <a class="work-card reveal" href="project-escola-de-montanha.html">
+        <div class="work-card-img">
+          <img src="https://joaomonteiro.pt/media/pages/archive/escola-de-montanha/204a39db76-1775750564/dsc3026_climbing_01.jpg" alt="Escola de Montanha">
+        </div>
+        <div class="work-card-meta">
+          <span class="work-cat" data-en="Photography" data-pt="Fotografia">Photography</span>
+          <span class="work-client">Escola de Montanha</span>
+          <h3 class="work-title">Escola de Montanha</h3>
+        </div>
+      </a>
+
+      <a class="work-card reveal" href="project-lume-circle.html">
+        <div class="work-card-img">
+          <img src="https://joaomonteiro.pt/media/pages/archive/lume-circle/5187a48680-1773080356/dsc0583.jpg" alt="Lume Circle">
+        </div>
+        <div class="work-card-meta">
+          <span class="work-cat" data-en="Fashion Photography" data-pt="Fotografia de Moda">Fashion Photography</span>
+          <span class="work-client">Lume Circle</span>
+          <h3 class="work-title">Lume Circle</h3>
+        </div>
+      </a>
+
+      <a class="work-card reveal" href="project-maiadouro.html">
+        <div class="work-card-img">
+          <img src="https://joaomonteiro.pt/media/pages/archive/maiadouro/53dc1bde18-1773146310/livros-maiadouro-0256.jpg" alt="MaiaDouro">
+        </div>
+        <div class="work-card-meta">
+          <span class="work-cat" data-en="Editorial Photography" data-pt="Fotografia Editorial">Editorial Photography</span>
+          <span class="work-client">Gráfica Maiadouro</span>
+          <h3 class="work-title">MaiaDouro</h3>
+        </div>
+      </a>
+
+      <a class="work-card reveal" href="project-creme-climbing.html">
+        <div class="work-card-img">
+          <img src="https://joaomonteiro.pt/media/pages/archive/creme-climbing-holds/2b768e6277-1773155690/e-commerce2833.jpg" alt="Creme Climbing Holds">
+        </div>
+        <div class="work-card-meta">
+          <span class="work-cat" data-en="Product Photography" data-pt="Fotografia de Produto">Product Photography</span>
+          <span class="work-client">Creme Climbing</span>
+          <h3 class="work-title">Creme Climbing Holds</h3>
+        </div>
+      </a>
+
+      <a class="work-card reveal" href="project-carolina-garfo.html">
+        <div class="work-card-img">
+          <img src="https://joaomonteiro.pt/media/pages/archive/carolina-garfo/c138be3f29-1773080304/studio-session-1174.jpg" alt="Carolina Garfo">
+        </div>
+        <div class="work-card-meta">
+          <span class="work-cat" data-en="Studio Photography" data-pt="Fotografia de Estúdio">Studio Photography</span>
+          <span class="work-client">Arte da Terra</span>
+          <h3 class="work-title">Carolina Garfo</h3>
+        </div>
+      </a>
+
+      <a class="work-card reveal" href="project-softrock.html">
+        <div class="work-card-img">
+          <img src="https://joaomonteiro.pt/media/pages/archive/soft-rock/e3e6523dbe-1773080363/studio-session-1604.jpg" alt="SOFTROCK">
+        </div>
+        <div class="work-card-meta">
+          <span class="work-cat" data-en="Brand Photography" data-pt="Fotografia de Marca">Brand Photography</span>
+          <span class="work-client">Softrock</span>
+          <h3 class="work-title">SOFTROCK</h3>
+        </div>
+      </a>
+
+      <a class="work-card reveal" href="project-sopro.html">
+        <div class="work-card-img">
+          <img src="https://joaomonteiro.pt/media/pages/archive/sopro-psycoacoustics/2608eaa0ec-1773080322/2023-05-22-22-44-38-b-r11-s5.jpg" alt="Sopro">
+        </div>
+        <div class="work-card-meta">
+          <span class="work-cat" data-en="Art Installation" data-pt="Instalação Artística">Art Installation</span>
+          <span class="work-client">Hotelier</span>
+          <h3 class="work-title">Sopro (psychoacoustics)</h3>
+        </div>
+      </a>
+
+      <a class="work-card reveal" href="project-folar-valpacos.html">
+        <div class="work-card-img">
+          <img src="https://joaomonteiro.pt/media/pages/archive/feira-do-folar-valpacos-2/2ddf6fc174-1774524839/still-2026-02-13-164542_1.1.2-large.jpeg" alt="Feira do Folar Valpaços">
+        </div>
+        <div class="work-card-meta">
+          <span class="work-cat" data-en="Documentary Film" data-pt="Documentário">Documentary Film</span>
+          <span class="work-client">Valpaços</span>
+          <h3 class="work-title">Feira do Folar Valpaços</h3>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2 class="cta-heading reveal" data-en="Let's build something<br><em>worth remembering.</em>" data-pt="Vamos criar algo<br><em>que vale a pena recordar.</em>">Let's build something<br><em>worth remembering.</em></h2>
+  <div class="cta-btns reveal">
+    <a href="mailto:hello@joaomonteiro.pt" class="btn btn-solid" data-en="Start a Project" data-pt="Iniciar um Projeto">Start a Project</a>
+    <a href="about.html" class="btn btn-outline" data-en="View About" data-pt="Ver Sobre">View About</a>
+  </div>
+</section>
+
+<footer>
+  <a href="about.html" class="footer-logo">João Vaz Monteiro</a>
+  <ul class="footer-links">
+    <li><a href="work.html" data-en="Work" data-pt="Projeto">Work</a></li>
+    <li><a href="services.html" data-en="Services" data-pt="Serviços">Services</a></li>
+    <li><a href="about.html" data-en="About" data-pt="Sobre">About</a></li>
+    <li><a href="mailto:hello@joaomonteiro.pt" data-en="Contact" data-pt="Contacto">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+  // ── Language switcher ──
+  function setLang(lang) {
+    document.querySelectorAll('[data-en]').forEach(el => {
+      el.innerHTML = el.dataset[lang] || el.dataset.en;
+    });
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+    document.documentElement.lang = lang === 'pt' ? 'pt' : 'en';
+    localStorage.setItem('lang', lang);
+  }
+  // restore saved language
+  const savedLang = localStorage.getItem('lang');
+  if (savedLang && savedLang !== 'en') setLang(savedLang);
+
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  }, {passive: true});
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, {threshold: 0, rootMargin: '0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('nav-links');
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+      if (isOpen) window.scrollTo({ top: 0, behavior: 'instant' });
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', false);
+        document.body.style.overflow = '';
+      });
+    });
+  }
+</script>
+
+</body>
+</html>
